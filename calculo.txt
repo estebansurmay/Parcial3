@@ -1,0 +1,127 @@
+PARCIAL 3 - INGENIERIA DE SOFTWARE I (273365) - EnvíaYa
+CALCULO DE PARAMETROS PERSONALIZADOS
+=========================================================
+
+1. DIGITOS DEL CODIGO ESTUDIANTIL
+---------------------------------------------------------
+Los 6 ultimos digitos se llaman A B C D E F:
+
+    A = 2
+    B = 2
+    C = 0
+    D = 0
+    E = 6
+    F = 8
+
+
+2. PARAMETROS NUMERICOS (formula -> sustitucion -> resultado)
+---------------------------------------------------------
+
+PMAX = 30 + 5·A
+     = 30 + 5·2
+     = 30 + 10
+     = 40                     -> Peso maximo permitido: 40 kg
+
+L1   = 2 + (B mod 3)
+     = 2 + (2 mod 3)          (2 mod 3 = 2)
+     = 2 + 2
+     = 4                      -> Limite del tramo 1: 4 kg
+
+L2   = 10 + C
+     = 10 + 0
+     = 10                     -> Limite del tramo 2: 10 kg
+
+RR   = 10 + 5·(E mod 4)
+     = 10 + 5·(6 mod 4)       (6 mod 4 = 2)
+     = 10 + 5·2
+     = 10 + 10
+     = 20                     -> Recargo zona rural: 20 %  (0,20)
+
+RN   = 40 + 5·(F mod 3)
+     = 40 + 5·(8 mod 3)       (8 mod 3 = 2)
+     = 40 + 5·2
+     = 40 + 10
+     = 50                     -> Recargo zona nacional: 50 %  (0,50)
+
+V    = 10 + 5·(A mod 3)
+     = 10 + 5·(2 mod 3)       (2 mod 3 = 2)
+     = 10 + 5·2
+     = 10 + 10
+     = 20                     -> Descuento cliente VIP: 20 %  (0,20)
+
+S    = 2000 + 500·(C mod 4)
+     = 2000 + 500·(0 mod 4)   (0 mod 4 = 0)
+     = 2000 + 0
+     = 2000                   -> Recargo de fin de semana: $2.000
+
+
+3. REGLAS QUE CAMBIAN SEGUN LA PARIDAD DE UN DIGITO
+---------------------------------------------------------
+
+D = 0 (PAR)    -> Regla del tramo 1
+                  El tramo 1 INCLUYE el limite: peso <= L1  ->  peso <= 4
+
+E = 6 (PAR)    -> Recargo de fin de semana
+                  Se suma ANTES de los descuentos.
+
+B = 2 (PAR)    -> Cliente y cupon
+                  Solo se aplica EL MAYOR de los dos descuentos
+                  (no se acumulan).
+
+F = 8 (PAR)    -> Cupon que no existe
+                  Se IGNORA (no es error).
+
+
+4. SOLICITUD DE CAMBIO (PARTE 8)
+---------------------------------------------------------
+
+CAMBIO = (A + F) mod 3
+       = (2 + 8) mod 3
+       = 10 mod 3             (10 = 3·3 + 1)
+       = 1
+
+Solicitud de cambio 1: nuevo tipo de cliente EMPRESARIAL con 12 % de
+descuento. Si el peso es mayor que L2 (10 kg), el recargo de zona no
+se cobra.
+
+
+5. TABLA "MIS PARAMETROS" (para el inicio del informe)
+---------------------------------------------------------
+
+  A  B  C  D  E  F | PMAX  L1  L2   RR   RN    V      S   | CAMBIO
+ --------------------------------------------------------------------
+  2  2  0  0  6  8 |  40    4  10  20 %  50 %  20 %  $2.000 |   1
+
+
+6. CONFIG PARA EL CODIGO (envios.js)
+---------------------------------------------------------
+
+CONFIG = {
+  L1: 4,
+  L2: 10,
+  RECARGO_RURAL: 0.20,      // fraccion
+  RECARGO_NACIONAL: 0.50,   // fraccion
+  DESC_VIP: 0.20,           // fraccion
+  RECARGO_FINDE: 2000       // pesos
+}
+
+Nota: el codigo heredado tiene el limite de peso fijo en 50 en lugar de
+PMAX = 40. Es un defecto del heredado y se conserva tal cual hasta la
+Parte 6 (se documentara en el reporte de defectos).
+
+
+7. ESPECIFICACION CON MIS VALORES (R1 - R8)
+---------------------------------------------------------
+
+R1  0 < peso <= 40. Si no, error "peso invalido".
+R2  Zona distinta de urbana/rural/nacional, o dia fuera de 1..7 -> error.
+R3  Tarifa base: peso <= 4 kg -> $6.000 | peso <= 10 kg -> $9.000 |
+    peso > 10 kg -> $9.000 + $800 por cada kg sobre 10 (proporcional).
+R4  Recargo por zona: rural +20 %, nacional +50 %, urbana sin recargo.
+R5  Fin de semana (dia 6 sabado y dia 7 domingo): +$2.000, ANTES de
+    los descuentos.
+R6  Descuento cliente: frecuente 5 %, VIP 20 %. Cupon ENVIO10: 10 %.
+    Si hay cliente y cupon se aplica SOLO EL MAYOR.
+R7  Cupon inexistente: se IGNORA.
+R8  Costo minimo $5.000. Redondeo al multiplo de $100 mas cercano
+    ($50 redondea hacia arriba).
