@@ -1,0 +1,338 @@
+{
+ "descripcion": "Casos de la solicitud de cambio CAMBIO = 1 (Parte 8): cliente empresarial 12 % y sin recargo de zona si peso > L2. Esperados calculados a mano.",
+ "parametros": {
+  "L2": 10,
+  "DESC_EMPRESARIAL": 0.12
+ },
+ "casos": [
+  {
+   "id": "CE-01",
+   "criterio": "CA-04.1",
+   "requisitos": [
+    "R9"
+   ],
+   "entradas": {
+    "peso": 4,
+    "zona": "urbana",
+    "cliente": "empresarial",
+    "dia": 3,
+    "cupon": null
+   },
+   "esperado": 5300,
+   "calculo": "6.000 × 0,88 = 5.280 → $5.300",
+   "tecnica": "Partición: cliente nuevo"
+  },
+  {
+   "id": "CE-02",
+   "criterio": "CA-04.2",
+   "requisitos": [
+    "R9",
+    "R10"
+   ],
+   "entradas": {
+    "peso": 10,
+    "zona": "rural",
+    "cliente": "empresarial",
+    "dia": 3,
+    "cupon": null
+   },
+   "esperado": 9500,
+   "calculo": "p = 10 no es mayor que L2: sí hay recargo. 9.000 × 1,20 = 10.800; × 0,88 = 9.504 → $9.500",
+   "tecnica": "Valor límite: p = L2"
+  },
+  {
+   "id": "CE-03",
+   "criterio": "CA-04.2",
+   "requisitos": [
+    "R9",
+    "R10"
+   ],
+   "entradas": {
+    "peso": 10,
+    "zona": "nacional",
+    "cliente": "empresarial",
+    "dia": 3,
+    "cupon": null
+   },
+   "esperado": 11900,
+   "calculo": "9.000 × 1,50 = 13.500; × 0,88 = 11.880 → $11.900",
+   "tecnica": "Valor límite: p = L2"
+  },
+  {
+   "id": "CE-04",
+   "criterio": "CA-04.1",
+   "requisitos": [
+    "R9",
+    "R4",
+    "R5"
+   ],
+   "entradas": {
+    "peso": 4,
+    "zona": "rural",
+    "cliente": "empresarial",
+    "dia": 6,
+    "cupon": null
+   },
+   "esperado": 8100,
+   "calculo": "6.000 × 1,20 = 7.200; + 2.000 = 9.200; × 0,88 = 8.096 → $8.100",
+   "tecnica": "Combinación con fin de semana"
+  },
+  {
+   "id": "CE-05",
+   "criterio": "CA-04.3",
+   "requisitos": [
+    "R9",
+    "R10"
+   ],
+   "entradas": {
+    "peso": 10.1,
+    "zona": "rural",
+    "cliente": "empresarial",
+    "dia": 3,
+    "cupon": null
+   },
+   "esperado": 8000,
+   "calculo": "p > L2: sin recargo de zona. 9.000 + 0,1 × 800 = 9.080; × 0,88 = 7.990,4 → $8.000 (con recargo daría $9.600)",
+   "tecnica": "Valor límite: p = L2 + 0,1"
+  },
+  {
+   "id": "CE-06",
+   "criterio": "CA-04.4",
+   "requisitos": [
+    "R9",
+    "R10"
+   ],
+   "entradas": {
+    "peso": 12,
+    "zona": "nacional",
+    "cliente": "empresarial",
+    "dia": 3,
+    "cupon": null
+   },
+   "esperado": 9300,
+   "calculo": "9.000 + 2 × 800 = 10.600 sin recargo; × 0,88 = 9.328 → $9.300",
+   "tecnica": "Partición: peso > L2"
+  },
+  {
+   "id": "CE-07",
+   "criterio": "CA-04.5",
+   "requisitos": [
+    "R9",
+    "R10",
+    "R5"
+   ],
+   "entradas": {
+    "peso": 12,
+    "zona": "rural",
+    "cliente": "empresarial",
+    "dia": 7,
+    "cupon": null
+   },
+   "esperado": 11100,
+   "calculo": "10.600 sin recargo de zona; + 2.000 = 12.600; × 0,88 = 11.088 → $11.100",
+   "tecnica": "Combinación con fin de semana"
+  },
+  {
+   "id": "CE-08",
+   "criterio": "CA-04.4",
+   "requisitos": [
+    "R9",
+    "R10",
+    "R1"
+   ],
+   "entradas": {
+    "peso": 40,
+    "zona": "nacional",
+    "cliente": "empresarial",
+    "dia": 3,
+    "cupon": null
+   },
+   "esperado": 29000,
+   "calculo": "9.000 + 30 × 800 = 33.000 sin recargo; × 0,88 = 29.040 → $29.000",
+   "tecnica": "Valor límite: p = PMAX"
+  },
+  {
+   "id": "CE-09",
+   "criterio": "CA-04.4",
+   "requisitos": [
+    "R9",
+    "R10"
+   ],
+   "entradas": {
+    "peso": 12,
+    "zona": "urbana",
+    "cliente": "empresarial",
+    "dia": 3,
+    "cupon": null
+   },
+   "esperado": 9300,
+   "calculo": "urbana no tiene recargo: 10.600 × 0,88 = 9.328 → $9.300",
+   "tecnica": "Partición: zona urbana"
+  },
+  {
+   "id": "CE-10",
+   "criterio": "CA-04.6",
+   "requisitos": [
+    "R9",
+    "R6"
+   ],
+   "entradas": {
+    "peso": 4,
+    "zona": "urbana",
+    "cliente": "empresarial",
+    "dia": 3,
+    "cupon": "ENVIO10"
+   },
+   "esperado": 5300,
+   "calculo": "solo el mayor: 12 % contra 10 %. 6.000 × 0,88 = 5.280 → $5.300",
+   "tecnica": "Tabla de decisión: cliente y cupón"
+  },
+  {
+   "id": "CE-11",
+   "criterio": "CA-04.6",
+   "requisitos": [
+    "R9",
+    "R10",
+    "R6",
+    "R5"
+   ],
+   "entradas": {
+    "peso": 12,
+    "zona": "rural",
+    "cliente": "empresarial",
+    "dia": 6,
+    "cupon": "ENVIO10"
+   },
+   "esperado": 11100,
+   "calculo": "10.600 sin recargo; + 2.000 = 12.600; solo 12 %: × 0,88 = 11.088 → $11.100",
+   "tecnica": "Tabla de decisión: cliente y cupón"
+  },
+  {
+   "id": "CE-12",
+   "criterio": "CA-04.6",
+   "requisitos": [
+    "R9",
+    "R10",
+    "R7"
+   ],
+   "entradas": {
+    "peso": 10.5,
+    "zona": "nacional",
+    "cliente": "empresarial",
+    "dia": 3,
+    "cupon": "PROMO50"
+   },
+   "esperado": 8300,
+   "calculo": "cupón inexistente se ignora; sin recargo: 9.400 × 0,88 = 8.272 → $8.300",
+   "tecnica": "Tabla de decisión: cupón inexistente"
+  },
+  {
+   "id": "CE-13",
+   "criterio": "CA-04.7",
+   "requisitos": [
+    "R4",
+    "R10"
+   ],
+   "entradas": {
+    "peso": 12,
+    "zona": "rural",
+    "cliente": "frecuente",
+    "dia": 3,
+    "cupon": null
+   },
+   "esperado": 12100,
+   "calculo": "el cliente frecuente sí paga recargo: 10.600 × 1,20 = 12.720; × 0,95 = 12.084 → $12.100",
+   "tecnica": "Regresión: la exención es solo empresarial"
+  },
+  {
+   "id": "CE-14",
+   "criterio": "CA-04.7",
+   "requisitos": [
+    "R4",
+    "R10"
+   ],
+   "entradas": {
+    "peso": 12,
+    "zona": "nacional",
+    "cliente": "vip",
+    "dia": 3,
+    "cupon": null
+   },
+   "esperado": 12700,
+   "calculo": "10.600 × 1,50 = 15.900; × 0,80 = 12.720 → $12.700",
+   "tecnica": "Regresión: la exención es solo empresarial"
+  },
+  {
+   "id": "CE-15",
+   "criterio": "CA-04.7",
+   "requisitos": [
+    "R4",
+    "R10"
+   ],
+   "entradas": {
+    "peso": 12,
+    "zona": "rural",
+    "cliente": "normal",
+    "dia": 3,
+    "cupon": null
+   },
+   "esperado": 12700,
+   "calculo": "10.600 × 1,20 = 12.720 → $12.700",
+   "tecnica": "Regresión: la exención es solo empresarial"
+  },
+  {
+   "id": "CE-16",
+   "criterio": "CA-04.8",
+   "requisitos": [
+    "R2",
+    "R9"
+   ],
+   "entradas": {
+    "peso": 12,
+    "zona": "aérea",
+    "cliente": "empresarial",
+    "dia": 3,
+    "cupon": null
+   },
+   "esperado": null,
+   "calculo": "la zona se valida aunque el recargo no se cobre → error",
+   "tecnica": "Validación"
+  },
+  {
+   "id": "CE-17",
+   "criterio": "CA-04.8",
+   "requisitos": [
+    "R1",
+    "R9"
+   ],
+   "entradas": {
+    "peso": 40.01,
+    "zona": "urbana",
+    "cliente": "empresarial",
+    "dia": 3,
+    "cupon": null
+   },
+   "esperado": null,
+   "calculo": "supera PMAX → error “peso inválido”",
+   "tecnica": "Validación"
+  },
+  {
+   "id": "CE-18",
+   "criterio": "CA-04.8",
+   "requisitos": [
+    "R2",
+    "R9"
+   ],
+   "entradas": {
+    "peso": 4,
+    "zona": "urbana",
+    "cliente": "empresarial",
+    "dia": 8,
+    "cupon": null
+   },
+   "esperado": null,
+   "calculo": "día 8 fuera de 1 a 7 → error",
+   "tecnica": "Validación"
+  }
+ ]
+}
