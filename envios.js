@@ -10,7 +10,7 @@ const CONFIG = {
 };
 
 function calc(p, z, c, d, cup = null, flag = false) {
-  if (p <= 0 || p > 50) {
+  if (p <= 0 || p > 40) {
     throw new Error("peso invalido");
   }
   let t;
