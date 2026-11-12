@@ -1,0 +1,11 @@
+# Documentos: no van al repositorio
+*.md
+*.txt
+*.pdf
+
+# El CHANGELOG sí es entregable del parcial (Parte 7)
+!CHANGELOG.md
+
+# Dependencias y reportes generados
+node_modules/
+coverage/
