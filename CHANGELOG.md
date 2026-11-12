@@ -6,6 +6,19 @@ El formato sigue [Keep a Changelog 1.1.0](https://keepachangelog.com/es-ES/1.1.0
 
 ## [Unreleased]
 
+## [2.1.0] - 2026-11-11
+
+Versión **menor**: agrega funcionalidad (solicitud de cambio 1) sin cambiar el resultado de ninguna entrada de clientes normal, frecuente o vip.
+
+### Added
+- Cliente de tipo `empresarial` con 12 % de descuento. Compite con el cupón bajo la misma regla de "solo el mayor" (R9, R6).
+- Un cliente empresarial con peso mayor que L2 (10 kg) no paga recargo de zona; con peso igual o menor que L2 sí lo paga. El recargo de fin de semana se sigue cobrando (R10).
+- Funciones `exentoDeRecargoDeZona` y `tarifaConZona` en `envios.js`.
+- 27 pruebas del cambio (`test/cambio_empresarial.test.js` y `test/cambio_empresarial.json`), escritas antes del código.
+
+### Changed
+- El tipo de cliente `empresarial`, que antes se trataba como cliente normal, ahora recibe el 12 % de descuento.
+
 ## [2.0.0] - 2026-11-11
 
 Versión **mayor** porque cambia la interfaz pública de `calc` (se elimina el argumento `flag`) y porque entradas que antes se aceptaban (zona o día inválidos) ahora lanzan error. Incluye la corrección de los 7 defectos conocidos de la v1.0.0 y la refactorización con patrón Estrategia.
@@ -44,6 +57,7 @@ Código heredado de EnvíaYa, tal como se recibió.
 - Función `calc(p, z, c, d, cup, flag)` en `envios.js` con el cálculo del costo de envío por peso, zona, tipo de cliente, día y cupón, con `CONFIG` completado según los parámetros del estudiante.
 - Conocía 7 defectos (DEF-01 a DEF-07), registrados en la Parte 5 y corregidos en la 2.0.0.
 
-[Unreleased]: https://github.com/estebansurmay/Parcial3/compare/v2.0.0...HEAD
+[Unreleased]: https://github.com/estebansurmay/Parcial3/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/estebansurmay/Parcial3/compare/v2.0.0...v2.1.0
 [2.0.0]: https://github.com/estebansurmay/Parcial3/compare/v1.0.0...v2.0.0
 [1.0.0]: https://github.com/estebansurmay/Parcial3/releases/tag/v1.0.0
