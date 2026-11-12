@@ -34,6 +34,12 @@
   "caminos": [
     {
       "id": "CB-01",
+      "requisitos": [
+        "R3",
+        "R4",
+        "R5",
+        "R6"
+      ],
       "nodos": [
         "N1",
         "N2",
@@ -70,6 +76,9 @@
     },
     {
       "id": "CB-02",
+      "requisitos": [
+        "R1"
+      ],
       "nodos": [
         "N1",
         "N3",
@@ -89,6 +98,9 @@
     },
     {
       "id": "CB-03",
+      "requisitos": [
+        "R1"
+      ],
       "nodos": [
         "N1",
         "N2",
@@ -109,6 +121,9 @@
     },
     {
       "id": "CB-04",
+      "requisitos": [
+        "R3"
+      ],
       "nodos": [
         "N1",
         "N2",
@@ -144,6 +159,9 @@
     },
     {
       "id": "CB-05",
+      "requisitos": [
+        "R3"
+      ],
       "nodos": [
         "N1",
         "N2",
@@ -180,6 +198,9 @@
     },
     {
       "id": "CB-06",
+      "requisitos": [
+        "R4"
+      ],
       "nodos": [
         "N1",
         "N2",
@@ -214,6 +235,9 @@
     },
     {
       "id": "CB-07",
+      "requisitos": [
+        "R4"
+      ],
       "nodos": [
         "N1",
         "N2",
@@ -249,6 +273,9 @@
     },
     {
       "id": "CB-08",
+      "requisitos": [
+        "R2"
+      ],
       "nodos": [
         "N1",
         "N2",
@@ -284,6 +311,9 @@
     },
     {
       "id": "CB-09",
+      "requisitos": [
+        "R5"
+      ],
       "nodos": [
         "N1",
         "N2",
@@ -319,6 +349,9 @@
     },
     {
       "id": "CB-10",
+      "requisitos": [
+        "R6"
+      ],
       "nodos": [
         "N1",
         "N2",
@@ -356,6 +389,9 @@
     },
     {
       "id": "CB-11",
+      "requisitos": [
+        "R6"
+      ],
       "nodos": [
         "N1",
         "N2",
@@ -393,6 +429,9 @@
     },
     {
       "id": "CB-12",
+      "requisitos": [
+        "R6"
+      ],
       "nodos": [
         "N1",
         "N2",
@@ -427,6 +466,9 @@
     },
     {
       "id": "CB-13",
+      "requisitos": [
+        "R7"
+      ],
       "nodos": [
         "N1",
         "N2",
@@ -462,6 +504,9 @@
     },
     {
       "id": "CB-14",
+      "requisitos": [
+        "R8"
+      ],
       "nodos": [
         "N1",
         "N2",
@@ -494,6 +539,7 @@
     },
     {
       "id": "CB-15",
+      "requisitos": [],
       "nodos": [
         "N1",
         "N2",

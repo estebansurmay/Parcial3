@@ -1,0 +1,427 @@
+{
+  "descripcion": "Criterios de aceptacion de la Parte 1 (HU-01, HU-02, HU-03)",
+  "criterios": [
+    {
+      "id": "CA-01.1a",
+      "requisitos": [
+        "R1"
+      ],
+      "entradas": {
+        "peso": 0,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": null,
+      "error": "error"
+    },
+    {
+      "id": "CA-01.1b",
+      "requisitos": [
+        "R1"
+      ],
+      "entradas": {
+        "peso": -1,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": null,
+      "error": "error"
+    },
+    {
+      "id": "CA-01.2",
+      "requisitos": [
+        "R1"
+      ],
+      "entradas": {
+        "peso": 40.01,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": null,
+      "error": "error"
+    },
+    {
+      "id": "CA-01.3",
+      "requisitos": [
+        "R1",
+        "R3"
+      ],
+      "entradas": {
+        "peso": 40,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 33000,
+      "error": null
+    },
+    {
+      "id": "CA-01.4",
+      "requisitos": [
+        "R2"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "aérea",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": null,
+      "error": "error"
+    },
+    {
+      "id": "CA-01.5a",
+      "requisitos": [
+        "R2"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 0,
+        "cupon": null
+      },
+      "esperado": null,
+      "error": "error"
+    },
+    {
+      "id": "CA-01.5b",
+      "requisitos": [
+        "R2"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 8,
+        "cupon": null
+      },
+      "esperado": null,
+      "error": "error"
+    },
+    {
+      "id": "CA-02.1",
+      "requisitos": [
+        "R3"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 6000,
+      "error": null
+    },
+    {
+      "id": "CA-02.2",
+      "requisitos": [
+        "R3"
+      ],
+      "entradas": {
+        "peso": 4.1,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 9000,
+      "error": null
+    },
+    {
+      "id": "CA-02.3a",
+      "requisitos": [
+        "R3"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 9000,
+      "error": null
+    },
+    {
+      "id": "CA-02.3b",
+      "requisitos": [
+        "R3"
+      ],
+      "entradas": {
+        "peso": 12,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 10600,
+      "error": null
+    },
+    {
+      "id": "CA-02.4",
+      "requisitos": [
+        "R3"
+      ],
+      "entradas": {
+        "peso": 10.5,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 9400,
+      "error": null
+    },
+    {
+      "id": "CA-02.5a",
+      "requisitos": [
+        "R4"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "rural",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 7200,
+      "error": null
+    },
+    {
+      "id": "CA-02.5b",
+      "requisitos": [
+        "R4"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "nacional",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 9000,
+      "error": null
+    },
+    {
+      "id": "CA-02.6a",
+      "requisitos": [
+        "R5"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 6,
+        "cupon": null
+      },
+      "esperado": 8000,
+      "error": null
+    },
+    {
+      "id": "CA-02.6b",
+      "requisitos": [
+        "R5"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 7,
+        "cupon": null
+      },
+      "esperado": 8000,
+      "error": null
+    },
+    {
+      "id": "CA-02.7",
+      "requisitos": [
+        "R4",
+        "R5"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "rural",
+        "cliente": "normal",
+        "dia": 6,
+        "cupon": null
+      },
+      "esperado": 9200,
+      "error": null
+    },
+    {
+      "id": "CA-02.8",
+      "requisitos": [
+        "R5"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 6000,
+      "error": null
+    },
+    {
+      "id": "CA-03.1",
+      "requisitos": [
+        "R6"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "urbana",
+        "cliente": "frecuente",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 5700,
+      "error": null
+    },
+    {
+      "id": "CA-03.2",
+      "requisitos": [
+        "R6"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "vip",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 7200,
+      "error": null
+    },
+    {
+      "id": "CA-03.3",
+      "requisitos": [
+        "R6"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": "ENVIO10"
+      },
+      "esperado": 8100,
+      "error": null
+    },
+    {
+      "id": "CA-03.4",
+      "requisitos": [
+        "R6"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "vip",
+        "dia": 3,
+        "cupon": "ENVIO10"
+      },
+      "esperado": 7200,
+      "error": null
+    },
+    {
+      "id": "CA-03.5",
+      "requisitos": [
+        "R6"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "frecuente",
+        "dia": 3,
+        "cupon": "ENVIO10"
+      },
+      "esperado": 8100,
+      "error": null
+    },
+    {
+      "id": "CA-03.6",
+      "requisitos": [
+        "R7"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": "PROMO50"
+      },
+      "esperado": 9000,
+      "error": null
+    },
+    {
+      "id": "CA-03.7",
+      "requisitos": [
+        "R8"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "urbana",
+        "cliente": "vip",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 5000,
+      "error": null
+    },
+    {
+      "id": "CA-03.8",
+      "requisitos": [
+        "R8"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "frecuente",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 8600,
+      "error": null
+    },
+    {
+      "id": "CA-03.9",
+      "requisitos": [
+        "R8"
+      ],
+      "entradas": {
+        "peso": 10.5,
+        "zona": "nacional",
+        "cliente": "frecuente",
+        "dia": 7,
+        "cupon": null
+      },
+      "esperado": 15300,
+      "error": null
+    },
+    {
+      "id": "CA-03.10",
+      "requisitos": [
+        "R6"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "rural",
+        "cliente": "vip",
+        "dia": 6,
+        "cupon": "ENVIO10"
+      },
+      "esperado": 7400,
+      "error": null
+    }
+  ]
+}
