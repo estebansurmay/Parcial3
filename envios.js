@@ -55,7 +55,7 @@ function calc(p, z, c, d, cup = null, flag = false) {
   if (flag) {
     console.log("costo:", t);
   }
-  return Math.trunc(t / 100) * 100; // equivale a int(t / 100) * 100 de Python
+  return Math.floor(t / 100 + 0.5 + 1e-9) * 100; // al multiplo de 100 mas cercano; 50 sube
 }
 
 module.exports = { calc, CONFIG };
