@@ -37,17 +37,18 @@ function calc(p, z, c, d, cup = null, flag = false) {
   if (d === 6 || d === 7) {
     t = t + CONFIG["RECARGO_FINDE"];
   }
+  // solo el mayor descuento entre cliente y cupon (R6)
+  let desc = 0;
   if (c === "frecuente") {
-    t = t - t * 0.05;
+    desc = 0.05;
   }
   if (c === "vip") {
-    t = t - t * CONFIG["DESC_VIP"];
+    desc = CONFIG["DESC_VIP"];
   }
-  if (cup != null) {
-    if (cup === "ENVIO10") {
-      t = t - t * 0.10;
-    }
+  if (cup === "ENVIO10" && 0.10 > desc) {
+    desc = 0.10;
   }
+  t = t - t * desc;
   if (t < 5000) {
     t = 5000;
   }
