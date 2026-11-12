@@ -1,0 +1,730 @@
+{
+  "parametros": {
+    "PMAX": 40,
+    "L1": 4,
+    "L2": 10,
+    "RR": 0.2,
+    "RN": 0.5,
+    "V": 0.2,
+    "S": 2000,
+    "reglas": "tramo1 incluye L1; fin de semana antes de descuentos; solo el mayor descuento; cupon inexistente se ignora"
+  },
+  "casos": [
+    {
+      "id": "CP-01",
+      "requisitos": [
+        "R1"
+      ],
+      "entradas": {
+        "peso": 0,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": null,
+      "error": "peso inválido",
+      "tecnica": "Valor límite"
+    },
+    {
+      "id": "CP-02",
+      "requisitos": [
+        "R1"
+      ],
+      "entradas": {
+        "peso": -1,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": null,
+      "error": "peso inválido",
+      "tecnica": "Partición de equivalencia"
+    },
+    {
+      "id": "CP-03",
+      "requisitos": [
+        "R1",
+        "R3"
+      ],
+      "entradas": {
+        "peso": 0.01,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 6000,
+      "error": null,
+      "tecnica": "Valor límite"
+    },
+    {
+      "id": "CP-04",
+      "requisitos": [
+        "R3"
+      ],
+      "entradas": {
+        "peso": 3.99,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 6000,
+      "error": null,
+      "tecnica": "Valor límite"
+    },
+    {
+      "id": "CP-05",
+      "requisitos": [
+        "R3"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 6000,
+      "error": null,
+      "tecnica": "Valor límite"
+    },
+    {
+      "id": "CP-06",
+      "requisitos": [
+        "R3"
+      ],
+      "entradas": {
+        "peso": 4.01,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 9000,
+      "error": null,
+      "tecnica": "Valor límite"
+    },
+    {
+      "id": "CP-07",
+      "requisitos": [
+        "R3"
+      ],
+      "entradas": {
+        "peso": 9.99,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 9000,
+      "error": null,
+      "tecnica": "Valor límite"
+    },
+    {
+      "id": "CP-08",
+      "requisitos": [
+        "R3"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 9000,
+      "error": null,
+      "tecnica": "Valor límite"
+    },
+    {
+      "id": "CP-09",
+      "requisitos": [
+        "R3",
+        "R8"
+      ],
+      "entradas": {
+        "peso": 10.01,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 9000,
+      "error": null,
+      "tecnica": "Valor límite"
+    },
+    {
+      "id": "CP-10",
+      "requisitos": [
+        "R3"
+      ],
+      "entradas": {
+        "peso": 12,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 10600,
+      "error": null,
+      "tecnica": "Partición de equivalencia"
+    },
+    {
+      "id": "CP-11",
+      "requisitos": [
+        "R3",
+        "R8"
+      ],
+      "entradas": {
+        "peso": 39.99,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 33000,
+      "error": null,
+      "tecnica": "Valor límite"
+    },
+    {
+      "id": "CP-12",
+      "requisitos": [
+        "R1",
+        "R3"
+      ],
+      "entradas": {
+        "peso": 40,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 33000,
+      "error": null,
+      "tecnica": "Valor límite"
+    },
+    {
+      "id": "CP-13",
+      "requisitos": [
+        "R1"
+      ],
+      "entradas": {
+        "peso": 40.01,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": null,
+      "error": "peso inválido",
+      "tecnica": "Valor límite"
+    },
+    {
+      "id": "CP-14",
+      "requisitos": [
+        "R1"
+      ],
+      "entradas": {
+        "peso": 45,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": null,
+      "error": "peso inválido",
+      "tecnica": "Partición de equivalencia"
+    },
+    {
+      "id": "CP-15",
+      "requisitos": [
+        "R2"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "aérea",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": null,
+      "error": "zona inválida",
+      "tecnica": "Partición de equivalencia"
+    },
+    {
+      "id": "CP-16",
+      "requisitos": [
+        "R2"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 0,
+        "cupon": null
+      },
+      "esperado": null,
+      "error": "día inválido",
+      "tecnica": "Valor límite"
+    },
+    {
+      "id": "CP-17",
+      "requisitos": [
+        "R2"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 8,
+        "cupon": null
+      },
+      "esperado": null,
+      "error": "día inválido",
+      "tecnica": "Valor límite"
+    },
+    {
+      "id": "CP-18",
+      "requisitos": [
+        "R4"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "rural",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 7200,
+      "error": null,
+      "tecnica": "Partición de equivalencia"
+    },
+    {
+      "id": "CP-19",
+      "requisitos": [
+        "R4"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "nacional",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 9000,
+      "error": null,
+      "tecnica": "Partición de equivalencia"
+    },
+    {
+      "id": "CP-20",
+      "requisitos": [
+        "R2",
+        "R5"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 1,
+        "cupon": null
+      },
+      "esperado": 6000,
+      "error": null,
+      "tecnica": "Valor límite"
+    },
+    {
+      "id": "CP-21",
+      "requisitos": [
+        "R5"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 5,
+        "cupon": null
+      },
+      "esperado": 6000,
+      "error": null,
+      "tecnica": "Valor límite"
+    },
+    {
+      "id": "CP-22",
+      "requisitos": [
+        "R5"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 6,
+        "cupon": null
+      },
+      "esperado": 8000,
+      "error": null,
+      "tecnica": "Valor límite"
+    },
+    {
+      "id": "CP-23",
+      "requisitos": [
+        "R2",
+        "R5"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 7,
+        "cupon": null
+      },
+      "esperado": 8000,
+      "error": null,
+      "tecnica": "Valor límite"
+    },
+    {
+      "id": "CP-24",
+      "requisitos": [
+        "R4",
+        "R5"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "rural",
+        "cliente": "normal",
+        "dia": 6,
+        "cupon": null
+      },
+      "esperado": 9200,
+      "error": null,
+      "tecnica": "Combinación"
+    },
+    {
+      "id": "CP-25",
+      "requisitos": [
+        "R6"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 9000,
+      "error": null,
+      "tecnica": "Tabla de decisión"
+    },
+    {
+      "id": "CP-26",
+      "requisitos": [
+        "R5"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 6,
+        "cupon": null
+      },
+      "esperado": 11000,
+      "error": null,
+      "tecnica": "Tabla de decisión"
+    },
+    {
+      "id": "CP-27",
+      "requisitos": [
+        "R6"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": "ENVIO10"
+      },
+      "esperado": 8100,
+      "error": null,
+      "tecnica": "Tabla de decisión"
+    },
+    {
+      "id": "CP-28",
+      "requisitos": [
+        "R5",
+        "R6"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 7,
+        "cupon": "ENVIO10"
+      },
+      "esperado": 9900,
+      "error": null,
+      "tecnica": "Tabla de decisión"
+    },
+    {
+      "id": "CP-29",
+      "requisitos": [
+        "R6",
+        "R8"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "frecuente",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 8600,
+      "error": null,
+      "tecnica": "Tabla de decisión"
+    },
+    {
+      "id": "CP-30",
+      "requisitos": [
+        "R5",
+        "R6",
+        "R8"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "frecuente",
+        "dia": 6,
+        "cupon": null
+      },
+      "esperado": 10500,
+      "error": null,
+      "tecnica": "Tabla de decisión"
+    },
+    {
+      "id": "CP-31",
+      "requisitos": [
+        "R6"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "frecuente",
+        "dia": 3,
+        "cupon": "ENVIO10"
+      },
+      "esperado": 8100,
+      "error": null,
+      "tecnica": "Tabla de decisión"
+    },
+    {
+      "id": "CP-32",
+      "requisitos": [
+        "R5",
+        "R6"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "frecuente",
+        "dia": 7,
+        "cupon": "ENVIO10"
+      },
+      "esperado": 9900,
+      "error": null,
+      "tecnica": "Tabla de decisión"
+    },
+    {
+      "id": "CP-33",
+      "requisitos": [
+        "R6"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "vip",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 7200,
+      "error": null,
+      "tecnica": "Tabla de decisión"
+    },
+    {
+      "id": "CP-34",
+      "requisitos": [
+        "R5",
+        "R6"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "vip",
+        "dia": 6,
+        "cupon": null
+      },
+      "esperado": 8800,
+      "error": null,
+      "tecnica": "Tabla de decisión"
+    },
+    {
+      "id": "CP-35",
+      "requisitos": [
+        "R6"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "vip",
+        "dia": 3,
+        "cupon": "ENVIO10"
+      },
+      "esperado": 7200,
+      "error": null,
+      "tecnica": "Tabla de decisión"
+    },
+    {
+      "id": "CP-36",
+      "requisitos": [
+        "R5",
+        "R6"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "vip",
+        "dia": 7,
+        "cupon": "ENVIO10"
+      },
+      "esperado": 8800,
+      "error": null,
+      "tecnica": "Tabla de decisión"
+    },
+    {
+      "id": "CP-37",
+      "requisitos": [
+        "R7"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "normal",
+        "dia": 3,
+        "cupon": "PROMO50"
+      },
+      "esperado": 9000,
+      "error": null,
+      "tecnica": "Partición de equivalencia"
+    },
+    {
+      "id": "CP-38",
+      "requisitos": [
+        "R6",
+        "R7"
+      ],
+      "entradas": {
+        "peso": 10,
+        "zona": "urbana",
+        "cliente": "vip",
+        "dia": 3,
+        "cupon": "PROMO50"
+      },
+      "esperado": 7200,
+      "error": null,
+      "tecnica": "Partición de equivalencia"
+    },
+    {
+      "id": "CP-39",
+      "requisitos": [
+        "R6",
+        "R8"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "urbana",
+        "cliente": "vip",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 5000,
+      "error": null,
+      "tecnica": "Valor límite"
+    },
+    {
+      "id": "CP-40",
+      "requisitos": [
+        "R4",
+        "R6",
+        "R8"
+      ],
+      "entradas": {
+        "peso": 4.01,
+        "zona": "nacional",
+        "cliente": "frecuente",
+        "dia": 3,
+        "cupon": null
+      },
+      "esperado": 12800,
+      "error": null,
+      "tecnica": "Combinación"
+    },
+    {
+      "id": "CP-41",
+      "requisitos": [
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "R8"
+      ],
+      "entradas": {
+        "peso": 10.5,
+        "zona": "nacional",
+        "cliente": "frecuente",
+        "dia": 7,
+        "cupon": null
+      },
+      "esperado": 15300,
+      "error": null,
+      "tecnica": "Combinación"
+    },
+    {
+      "id": "CP-42",
+      "requisitos": [
+        "R4",
+        "R5",
+        "R6"
+      ],
+      "entradas": {
+        "peso": 4,
+        "zona": "rural",
+        "cliente": "vip",
+        "dia": 6,
+        "cupon": "ENVIO10"
+      },
+      "esperado": 7400,
+      "error": null,
+      "tecnica": "Combinación"
+    },
+    {
+      "id": "CP-43",
+      "requisitos": [
+        "R1",
+        "R3",
+        "R4",
+        "R5",
+        "R6"
+      ],
+      "entradas": {
+        "peso": 40,
+        "zona": "nacional",
+        "cliente": "vip",
+        "dia": 7,
+        "cupon": "ENVIO10"
+      },
+      "esperado": 41200,
+      "error": null,
+      "tecnica": "Combinación"
+    }
+  ]
+}
