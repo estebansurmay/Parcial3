@@ -1,0 +1,24 @@
+{
+  "name": "enviaya-calc",
+  "version": "1.0.0",
+  "description": "Calculo del costo de envio de EnviaYa (codigo heredado v1.0.0) con su suite de pruebas",
+  "main": "envios.js",
+  "private": true,
+  "scripts": {
+    "test": "jest",
+    "test:cov": "jest --coverage --verbose"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "collectCoverageFrom": [
+      "envios.js"
+    ],
+    "coverageReporters": [
+      "text",
+      "json-summary"
+    ]
+  },
+  "devDependencies": {
+    "jest": "^30.5.2"
+  }
+}
