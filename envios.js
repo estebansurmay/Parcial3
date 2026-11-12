@@ -29,7 +29,7 @@ function calc(p, z, c, d, cup = null, flag = false) {
     t = t + t * CONFIG["RECARGO_NACIONAL"];
   }
   // fin de semana
-  if (d > 6) {
+  if (d === 6 || d === 7) {
     t = t + CONFIG["RECARGO_FINDE"];
   }
   if (c === "frecuente") {
