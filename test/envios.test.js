@@ -27,7 +27,7 @@ const titulo = (c) =>
   `${c.id} [${c.requisitos.join(",") || "—"}] ${resumen(c.entradas)} → ${c.esperado === null ? "error" : pesos(c.esperado)}`;
 
 beforeEach(() => {
-  jest.spyOn(console, "log").mockImplementation(() => {}); // silencia el print de flag
+  jest.spyOn(console, "log").mockImplementation(() => {}); // permite comprobar que calc no imprime
 });
 afterEach(() => jest.restoreAllMocks());
 
@@ -47,8 +47,10 @@ describe("Mensajes de error (R1)", () => {
   test("R1: el error de peso inválido dice “peso inválido”", () => {
     expect(() => calc(0, "urbana", "normal", 3)).toThrow("peso inválido");
   });
-  test("flag imprime el costo antes de redondear (comportamiento heredado)", () => {
+  // Reemplaza a la prueba del argumento flag (Parte 6): la interfaz ya no lo tiene y calc no imprime.
+  test("interfaz v2: calc recibe 5 parámetros y no imprime nada, aunque se le pase un sexto", () => {
+    expect(calc.length).toBe(4); // peso, zona, cliente, dia (cupon tiene valor por defecto)
     calc(4, "urbana", "normal", 3, null, true);
-    expect(console.log).toHaveBeenCalledWith("costo:", 6000);
+    expect(console.log).not.toHaveBeenCalled();
   });
 });
