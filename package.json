@@ -1,7 +1,7 @@
 {
   "name": "enviaya-calc",
-  "version": "1.0.0",
-  "description": "Calculo del costo de envio de EnviaYa (codigo heredado v1.0.0) con su suite de pruebas",
+  "version": "2.0.0",
+  "description": "Calculo del costo de envio de EnviaYa (v2.0.0) con su suite de pruebas",
   "main": "envios.js",
   "private": true,
   "scripts": {
