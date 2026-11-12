@@ -13,6 +13,9 @@ function calc(p, z, c, d, cup = null, flag = false) {
   if (p <= 0 || p > 40) {
     throw new Error("peso inválido");
   }
+  if (d < 1 || d > 7) {
+    throw new Error("día inválido");
+  }
   let t;
   if (p <= CONFIG["L1"]) {
     t = 6000;
