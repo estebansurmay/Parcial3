@@ -11,7 +11,7 @@ const CONFIG = {
 
 function calc(p, z, c, d, cup = null, flag = false) {
   if (p <= 0 || p > 40) {
-    throw new Error("peso invalido");
+    throw new Error("peso inválido");
   }
   let t;
   if (p <= CONFIG["L1"]) {
