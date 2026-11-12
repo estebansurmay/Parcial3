@@ -1,5 +1,8 @@
-// envios.js  (traduccion fiel de envios.py v1.0.0 - codigo heredado)
-// La logica, incluidos los defectos, se conserva sin cambios.
+// envios.js - v2.0.0 (refactorizado). Calcula el costo de un envio de EnviaYa.
+// Orden de la especificacion: validar (R1,R2) -> tarifa base (R3) -> zona (R4)
+// -> fin de semana (R5) -> mayor descuento (R6,R7) -> minimo y redondeo (R8).
+const { ZonaUrbana, ZonaRural, ZonaNacional } = require("./zonas.js");
+
 const CONFIG = {
   L1: 4,
   L2: 10,
@@ -9,47 +12,107 @@ const CONFIG = {
   RECARGO_FINDE: 2000, // en pesos
 };
 
-function calc(p, z, c, d, cup = null, flag = false) {
-  if (p <= 0 || p > 50) {
-    throw new Error("peso invalido");
+// Constantes con nombre (antes eran numeros magicos dentro de calc)
+const PESO_MAXIMO = 40; // PMAX
+const TARIFA_TRAMO_1 = 6000;
+const TARIFA_TRAMO_2 = 9000;
+const TARIFA_POR_KG_ADICIONAL = 800;
+const DIA_MINIMO = 1;
+const DIA_MAXIMO = 7;
+const DIA_SABADO = 6;
+const DIA_DOMINGO = 7;
+const DESC_FRECUENTE = 0.05;
+const DESC_CUPON_ENVIO10 = 0.10;
+const COSTO_MINIMO = 5000;
+const MULTIPLO_REDONDEO = 100;
+const TOLERANCIA_FLOTANTE = 1e-9; // evita que 8549.9999999 redondee hacia abajo
+
+const ZONAS = new Map([
+  ["urbana", new ZonaUrbana()],
+  ["rural", new ZonaRural(CONFIG.RECARGO_RURAL)],
+  ["nacional", new ZonaNacional(CONFIG.RECARGO_NACIONAL)],
+]);
+const DESCUENTOS_CLIENTE = new Map([
+  ["frecuente", DESC_FRECUENTE],
+  ["vip", CONFIG.DESC_VIP],
+]);
+const DESCUENTOS_CUPON = new Map([["ENVIO10", DESC_CUPON_ENVIO10]]);
+
+function validarPeso(peso) {
+  if (peso <= 0 || peso > PESO_MAXIMO) {
+    throw new Error("peso inválido");
   }
-  let t;
-  if (p <= CONFIG["L1"]) {
-    t = 6000;
-  } else if (p <= CONFIG["L2"]) {
-    t = 9000;
-  } else {
-    t = 9000 + (p - CONFIG["L2"]) * 800;
-  }
-  if (z === "urbana") {
-    t = t;
-  } else if (z === "rural") {
-    t = t + t * CONFIG["RECARGO_RURAL"];
-  } else if (z === "nacional") {
-    t = t + t * CONFIG["RECARGO_NACIONAL"];
-  }
-  // fin de semana
-  if (d > 6) {
-    t = t + CONFIG["RECARGO_FINDE"];
-  }
-  if (c === "frecuente") {
-    t = t - t * 0.05;
-  }
-  if (c === "vip") {
-    t = t - t * CONFIG["DESC_VIP"];
-  }
-  if (cup != null) {
-    if (cup === "ENVIO10") {
-      t = t - t * 0.10;
-    }
-  }
-  if (t < 5000) {
-    t = 5000;
-  }
-  if (flag) {
-    console.log("costo:", t);
-  }
-  return Math.trunc(t / 100) * 100; // equivale a int(t / 100) * 100 de Python
 }
 
-module.exports = { calc, CONFIG };
+function obtenerEstrategiaZona(zona) {
+  const estrategia = ZONAS.get(zona);
+  if (!estrategia) {
+    throw new Error("zona inválida");
+  }
+  return estrategia;
+}
+
+function validarDia(dia) {
+  if (dia < DIA_MINIMO || dia > DIA_MAXIMO) {
+    throw new Error("día inválido");
+  }
+}
+
+function tarifaBase(peso) {
+  if (peso <= CONFIG.L1) {
+    return TARIFA_TRAMO_1;
+  }
+  if (peso <= CONFIG.L2) {
+    return TARIFA_TRAMO_2;
+  }
+  return TARIFA_TRAMO_2 + (peso - CONFIG.L2) * TARIFA_POR_KG_ADICIONAL;
+}
+
+function esFinDeSemana(dia) {
+  return dia === DIA_SABADO || dia === DIA_DOMINGO;
+}
+
+function recargoFinDeSemana(dia) {
+  return esFinDeSemana(dia) ? CONFIG.RECARGO_FINDE : 0;
+}
+
+// R6 y R7: solo el mayor entre descuento de cliente y de cupon; lo desconocido no descuenta.
+function mayorDescuento(cliente, cupon) {
+  const descuentoCliente = DESCUENTOS_CLIENTE.get(cliente) ?? 0;
+  const descuentoCupon = DESCUENTOS_CUPON.get(cupon) ?? 0;
+  return Math.max(descuentoCliente, descuentoCupon);
+}
+
+function aplicarMinimo(costo) {
+  return Math.max(costo, COSTO_MINIMO);
+}
+
+// Al multiplo de 100 mas cercano; los 50 redondean hacia arriba (R8).
+function redondearACentena(costo) {
+  return Math.floor(costo / MULTIPLO_REDONDEO + 0.5 + TOLERANCIA_FLOTANTE) * MULTIPLO_REDONDEO;
+}
+
+function calc(peso, zona, cliente, dia, cupon = null) {
+  validarPeso(peso);
+  const estrategiaZona = obtenerEstrategiaZona(zona);
+  validarDia(dia);
+
+  const conZona = estrategiaZona.aplicar(tarifaBase(peso));
+  const conFinDeSemana = conZona + recargoFinDeSemana(dia);
+  const descuento = mayorDescuento(cliente, cupon);
+  const conDescuento = conFinDeSemana - conFinDeSemana * descuento;
+
+  return redondearACentena(aplicarMinimo(conDescuento));
+}
+
+module.exports = {
+  calc,
+  CONFIG,
+  validarPeso,
+  validarDia,
+  tarifaBase,
+  esFinDeSemana,
+  mayorDescuento,
+  aplicarMinimo,
+  redondearACentena,
+};

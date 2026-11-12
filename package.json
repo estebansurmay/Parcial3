@@ -11,7 +11,8 @@
   "jest": {
     "testEnvironment": "node",
     "collectCoverageFrom": [
-      "envios.js"
+      "envios.js",
+      "zonas.js"
     ],
     "coverageReporters": [
       "text",
