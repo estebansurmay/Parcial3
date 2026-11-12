@@ -1,4 +1,4 @@
-// envios.js - v2.0.0 (refactorizado). Calcula el costo de un envio de EnviaYa.
+// envios.js - v2.1.0 (cliente empresarial). Base: v2.0.0 refactorizado. Calcula el costo de un envio de EnviaYa.
 // Orden de la especificacion: validar (R1,R2) -> tarifa base (R3) -> zona (R4)
 // -> fin de semana (R5) -> mayor descuento (R6,R7) -> minimo y redondeo (R8).
 const { ZonaUrbana, ZonaRural, ZonaNacional } = require("./zonas.js");
@@ -22,6 +22,8 @@ const DIA_MAXIMO = 7;
 const DIA_SABADO = 6;
 const DIA_DOMINGO = 7;
 const DESC_FRECUENTE = 0.05;
+const DESC_EMPRESARIAL = 0.12; // R9
+const CLIENTE_EMPRESARIAL = "empresarial";
 const DESC_CUPON_ENVIO10 = 0.10;
 const COSTO_MINIMO = 5000;
 const MULTIPLO_REDONDEO = 100;
@@ -35,6 +37,7 @@ const ZONAS = new Map([
 const DESCUENTOS_CLIENTE = new Map([
   ["frecuente", DESC_FRECUENTE],
   ["vip", CONFIG.DESC_VIP],
+  [CLIENTE_EMPRESARIAL, DESC_EMPRESARIAL],
 ]);
 const DESCUENTOS_CUPON = new Map([["ENVIO10", DESC_CUPON_ENVIO10]]);
 
@@ -83,6 +86,15 @@ function mayorDescuento(cliente, cupon) {
   return Math.max(descuentoCliente, descuentoCupon);
 }
 
+// R10: el cliente empresarial con peso mayor que L2 no paga recargo de zona.
+function exentoDeRecargoDeZona(cliente, peso) {
+  return cliente === CLIENTE_EMPRESARIAL && peso > CONFIG.L2;
+}
+
+function tarifaConZona(estrategiaZona, tarifa, cliente, peso) {
+  return exentoDeRecargoDeZona(cliente, peso) ? tarifa : estrategiaZona.aplicar(tarifa);
+}
+
 function aplicarMinimo(costo) {
   return Math.max(costo, COSTO_MINIMO);
 }
@@ -97,7 +109,7 @@ function calc(peso, zona, cliente, dia, cupon = null) {
   const estrategiaZona = obtenerEstrategiaZona(zona);
   validarDia(dia);
 
-  const conZona = estrategiaZona.aplicar(tarifaBase(peso));
+  const conZona = tarifaConZona(estrategiaZona, tarifaBase(peso), cliente, peso);
   const conFinDeSemana = conZona + recargoFinDeSemana(dia);
   const descuento = mayorDescuento(cliente, cupon);
   const conDescuento = conFinDeSemana - conFinDeSemana * descuento;
@@ -112,6 +124,7 @@ module.exports = {
   validarDia,
   tarifaBase,
   esFinDeSemana,
+  exentoDeRecargoDeZona,
   mayorDescuento,
   aplicarMinimo,
   redondearACentena,
